@@ -1,10 +1,13 @@
 package com.example.model.taipei_zoo
 
-import com.example.model.BaseTaipeiZooModel
 
-data class TaipeiZooListResp(
+data class TaipeiZooResp(
+    val limit: Int,
+    val offset: Int,
+    val count: Int,
+    val sort: String,
     val results: List<ZooZoneDetail>
-) : BaseTaipeiZooModel()
+): java.io.Serializable
 
 
 data class ZooZoneDetail(

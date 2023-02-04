@@ -1,5 +1,7 @@
 package com.example.data.data_source.taipei_zoo
 
+import com.example.model.BaseTaipeiZooModel
+import com.example.model.taipei_zoo.TaipeiZooResp
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,5 +15,5 @@ interface TaipeiZooServices {
     @GET(ZOO_LIST)
     suspend fun getZooZoneList(
         @Query("scope") scope: String = SCOPE
-    ): Response<Any>
+    ): Response<BaseTaipeiZooModel<TaipeiZooResp>>
 }

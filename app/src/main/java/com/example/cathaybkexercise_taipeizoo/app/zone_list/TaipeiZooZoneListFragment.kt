@@ -1,12 +1,14 @@
 package com.example.cathaybkexercise_taipeizoo.app.zone_list
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import com.example.cathaybkexercise_taipeizoo.BaseFragment
 import com.example.cathaybkexercise_taipeizoo.databinding.FragmentTaipeiZooZoneListBinding
+import com.example.model.taipei_zoo.TaipeiZooResp
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -42,7 +44,7 @@ class TaipeiZooZoneListFragment: BaseFragment(), TaipeiZooZoneListContracts.View
         }
     }
 
-    override fun onTaipeiZooZoneListUpdate() {
-
+    override fun onTaipeiZooZoneListUpdate(taipeiZooResp: TaipeiZooResp) {
+        Log.d("testData", taipeiZooResp.results.toString())
     }
 }
