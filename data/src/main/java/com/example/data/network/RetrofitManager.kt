@@ -1,4 +1,4 @@
-package com.example.data.dependency_injection
+package com.example.data.network
 
 import retrofit2.Retrofit
 
