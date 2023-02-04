@@ -1,8 +1,10 @@
 package com.example.cathaybkexercise_taipeizoo.app.zone_list
 
+import com.example.cathaybkexercise_taipeizoo.BaseViewInterface
+
 interface TaipeiZooZoneListContracts {
 
-    interface View{
+    interface View: BaseViewInterface{
         fun onTaipeiZooZoneListUpdate()
     }
 

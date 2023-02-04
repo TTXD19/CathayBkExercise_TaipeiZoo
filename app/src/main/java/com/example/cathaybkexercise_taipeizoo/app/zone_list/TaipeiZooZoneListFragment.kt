@@ -4,25 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.cathaybkexercise_taipeizoo.BaseFragment
 import com.example.cathaybkexercise_taipeizoo.databinding.FragmentTaipeiZooZoneListBinding
-import com.example.data.repository.taipei_zoo.ITaipeiZooRepository
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class TaipeiZooZoneListFragment: Fragment(), TaipeiZooZoneListContracts.View{
-
-    @Inject
-    lateinit var taipeiZooRepository: ITaipeiZooRepository
+class TaipeiZooZoneListFragment: BaseFragment(), TaipeiZooZoneListContracts.View{
 
     private lateinit var binding: FragmentTaipeiZooZoneListBinding
-
     private val presenter: TaipeiZooZoneListPresenter by lazy {
-        TaipeiZooZoneListPresenter(this, taipeiZooRepository)
+        TaipeiZooZoneListPresenter(this)
     }
 
     companion object{

@@ -1,13 +1,17 @@
 package com.example.cathaybkexercise_taipeizoo.app.zone_list
 
-import com.example.data.repository.taipei_zoo.ITaipeiZooRepository
-import javax.inject.Singleton
+import com.example.cathaybkexercise_taipeizoo.di.PresenterProvider
+import dagger.hilt.android.EntryPointAccessors
 
 
 class TaipeiZooZoneListPresenter(
     private val view: TaipeiZooZoneListContracts.View,
-    private val taipeiZooRepository: ITaipeiZooRepository
 ) : TaipeiZooZoneListContracts.Presenter {
+
+    private val taipeiZooRepository = EntryPointAccessors.fromApplication(
+        view.getFragmentContext(),
+        PresenterProvider.TaipeiZooPresenterProvider::class.java
+    ).taipeiZooRepository()
 
     override suspend fun fetchTaipeiZooZoneList() {
         val result = taipeiZooRepository.getZooZoneList()
