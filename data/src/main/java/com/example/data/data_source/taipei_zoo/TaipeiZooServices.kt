@@ -1,4 +1,4 @@
-package data_source.taipei_zoo
+package com.example.data.data_source.taipei_zoo
 
 interface TaipeiZooServices: ITaipeiZooDataSource {
 }

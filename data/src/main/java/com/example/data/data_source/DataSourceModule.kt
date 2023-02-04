@@ -1,21 +1,16 @@
 package com.example.data.data_source
 
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import data_source.taipei_zoo.ITaipeiZooDataSource
-import data_source.taipei_zoo.TaipeiZooDataSource
-import data_source.taipei_zoo.TaipeiZooServices
-import javax.inject.Singleton
+import com.example.data.data_source.taipei_zoo.ITaipeiZooDataSource
+import com.example.data.data_source.taipei_zoo.TaipeiZooDataSource
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataSourceModule {
+abstract class DataSourceModule {
 
-    @Singleton
-    @Provides
-    fun provideDataSourceModule(taipeiZooService: TaipeiZooServices): ITaipeiZooDataSource {
-        return TaipeiZooDataSource(taipeiZooService)
-    }
+    @Binds
+    abstract fun bindTransportRemoteDataSource(taipeiZooDataSource: TaipeiZooDataSource): ITaipeiZooDataSource
 }

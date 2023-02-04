@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import data_source.taipei_zoo.TaipeiZooServices
+import com.example.data.data_source.taipei_zoo.TaipeiZooServices
 import javax.inject.Singleton
 
 @Module
