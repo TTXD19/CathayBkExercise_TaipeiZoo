@@ -6,4 +6,7 @@ import javax.inject.Inject
 class TaipeiZooRepository @Inject constructor(
     private val taiZooDataSource: ITaipeiZooDataSource
 ): ITaipeiZooRepository {
+    override fun test(): String {
+        return "test"
+    }
 }
