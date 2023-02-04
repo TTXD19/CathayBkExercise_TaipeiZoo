@@ -1,7 +1,6 @@
 package com.example.cathaybkexercise_taipeizoo.app.zone_list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +13,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class TaipeiZooZoneListFragment: BaseFragment(), TaipeiZooZoneListContracts.View{
+class TaipeiZooZoneListFragment : BaseFragment(), TaipeiZooZoneListContracts.View {
 
     private lateinit var binding: FragmentTaipeiZooZoneListBinding
-    private val presenter: TaipeiZooZoneListPresenter by lazy {
-        TaipeiZooZoneListPresenter(this)
-    }
+    private val presenter: TaipeiZooZoneListPresenter by lazy { TaipeiZooZoneListPresenter(this) }
+    private val taipeiZooZoneListAdapter: TaipeiZooZoneListAdapter by lazy { TaipeiZooZoneListAdapter() }
 
-    companion object{
-        fun newInstance(): TaipeiZooZoneListFragment{
+    companion object {
+        fun newInstance(): TaipeiZooZoneListFragment {
             return TaipeiZooZoneListFragment()
         }
     }
@@ -39,12 +37,17 @@ class TaipeiZooZoneListFragment: BaseFragment(), TaipeiZooZoneListContracts.View
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO){
+        initView()
+    }
+
+    private fun initView() {
+        binding.rvZooZone.adapter = taipeiZooZoneListAdapter
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             presenter.fetchTaipeiZooZoneList()
         }
     }
 
     override fun onTaipeiZooZoneListUpdate(taipeiZooResp: TaipeiZooResp) {
-        Log.d("testData", taipeiZooResp.results.toString())
+        taipeiZooZoneListAdapter.submitList(taipeiZooResp.results)
     }
 }

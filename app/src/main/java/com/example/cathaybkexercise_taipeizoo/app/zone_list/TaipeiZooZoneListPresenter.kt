@@ -3,6 +3,8 @@ package com.example.cathaybkexercise_taipeizoo.app.zone_list
 import com.example.cathaybkexercise_taipeizoo.di.PresenterProvider
 import com.example.data.data_source.DataResult
 import dagger.hilt.android.EntryPointAccessors
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 
 class TaipeiZooZoneListPresenter(
@@ -16,8 +18,10 @@ class TaipeiZooZoneListPresenter(
 
     override suspend fun fetchTaipeiZooZoneList() {
         val result = taipeiZooRepository.getZooZoneList()
-        if (result is DataResult.Success){
-            view.onTaipeiZooZoneListUpdate(result.data)
+        withContext(Dispatchers.Main) {
+            if (result is DataResult.Success) {
+                view.onTaipeiZooZoneListUpdate(result.data)
+            }
         }
     }
 }
