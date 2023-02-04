@@ -1,6 +1,6 @@
-package com.example.cathaybkexercise_taipeizoo.di
+package com.example.data.dependency_injection
 
-import com.example.cathaybkexercise_taipeizoo.BuildConfig
+import com.example.data.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

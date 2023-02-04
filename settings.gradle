@@ -7,3 +7,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "CathayBkExercise_TaipeiZoo"
 include ':app'
+include ':data'
