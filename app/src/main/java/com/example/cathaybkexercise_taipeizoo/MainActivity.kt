@@ -2,26 +2,21 @@ package com.example.cathaybkexercise_taipeizoo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.lifecycle.lifecycleScope
-import com.example.data.repository.taipei_zoo.ITaipeiZooRepository
+import com.example.cathaybkexercise_taipeizoo.app.zone_list.TaipeiZooZoneListFragment
+import com.example.cathaybkexercise_taipeizoo.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var taipeiZooRepository: ITaipeiZooRepository
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        lifecycleScope.launch(Dispatchers.Main){
-            taipeiZooRepository.getZooZoneList()
-        }
+        supportFragmentManager.beginTransaction()
+            .add(R.id.frame_layout, TaipeiZooZoneListFragment.newInstance()).commit()
     }
 }
