@@ -3,8 +3,11 @@ package com.example.cathaybkexercise_taipeizoo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import com.example.data.repository.taipei_zoo.ITaipeiZooRepository
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -17,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.d("testData", taipeiZooRepository.test())
+        lifecycleScope.launch(Dispatchers.Main){
+            taipeiZooRepository.getZooZoneList()
+        }
     }
 }

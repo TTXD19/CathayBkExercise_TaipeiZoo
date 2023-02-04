@@ -4,9 +4,10 @@ import com.example.data.data_source.taipei_zoo.ITaipeiZooDataSource
 import javax.inject.Inject
 
 class TaipeiZooRepository @Inject constructor(
-    private val taiZooDataSource: ITaipeiZooDataSource
+    val taiZooDataSource: ITaipeiZooDataSource
 ): ITaipeiZooRepository {
-    override fun test(): String {
-        return "test"
+    override suspend fun getZooZoneList(): String {
+        taiZooDataSource.getZooZoneList()
+        return ""
     }
 }

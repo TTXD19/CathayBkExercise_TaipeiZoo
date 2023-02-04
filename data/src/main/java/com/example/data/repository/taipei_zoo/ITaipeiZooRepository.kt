@@ -1,5 +1,5 @@
 package com.example.data.repository.taipei_zoo
 
 interface ITaipeiZooRepository {
-    fun test(): String
+    suspend fun getZooZoneList(): String
 }
