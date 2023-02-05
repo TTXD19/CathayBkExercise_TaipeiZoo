@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import com.example.cathaybkexercise_taipeizoo.BaseFragment
+import com.example.cathaybkexercise_taipeizoo.app.TaipeiZooActivityHandler
 import com.example.cathaybkexercise_taipeizoo.databinding.FragmentTaipeiZooZoneListBinding
 import com.example.model.taipei_zoo.TaipeiZooResp
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +20,7 @@ class TaipeiZooZoneListFragment : BaseFragment(), TaipeiZooZoneListContracts.Vie
     private val presenter: TaipeiZooZoneListPresenter by lazy { TaipeiZooZoneListPresenter(this) }
 
     private val onItemClickCallBack: ((() -> Unit)) = {
-
+        getActivityHandler(TaipeiZooActivityHandler::class.java)?.goTaipeiZooZoneDetail()
     }
 
     private val taipeiZooZoneListAdapter: TaipeiZooZoneListAdapter by lazy { TaipeiZooZoneListAdapter(onItemClickCallBack) }
