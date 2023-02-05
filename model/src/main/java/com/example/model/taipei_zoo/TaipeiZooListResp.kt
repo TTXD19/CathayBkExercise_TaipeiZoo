@@ -18,4 +18,6 @@ data class ZooZoneDetail(
     val e_name: String,
     val e_pic_url: String,
     val e_info: String
-) : Serializable
+) : Serializable {
+    var isItemExpand: Boolean = false
+}

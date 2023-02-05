@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.cathaybkexercise_taipeizoo.databinding.VhZoneIntroBinding
 import com.example.model.taipei_zoo.ZooZoneDetail
 
-class TaipeiZooZoneListAdapter : ListAdapter<ZooZoneDetail, TaipeiZooZoneListViewHolder>(DiffCallBack()) {
+class TaipeiZooZoneListAdapter(
+    private val onItemClickCallBack: ((() -> Unit))
+) : ListAdapter<ZooZoneDetail, TaipeiZooZoneListViewHolder>(DiffCallBack()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaipeiZooZoneListViewHolder {
         return TaipeiZooZoneListViewHolder(
@@ -21,7 +23,7 @@ class TaipeiZooZoneListAdapter : ListAdapter<ZooZoneDetail, TaipeiZooZoneListVie
 
     override fun onBindViewHolder(holder: TaipeiZooZoneListViewHolder, position: Int) {
         currentList[position]?.also {
-            holder.setData(it)
+            holder.setData(it, onItemClickCallBack)
         }
     }
 
@@ -33,7 +35,5 @@ class TaipeiZooZoneListAdapter : ListAdapter<ZooZoneDetail, TaipeiZooZoneListVie
         override fun areContentsTheSame(oldItem: ZooZoneDetail, newItem: ZooZoneDetail): Boolean {
             return oldItem.id == newItem.id
         }
-
     }
-
 }

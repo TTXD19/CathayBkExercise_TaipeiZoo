@@ -17,7 +17,12 @@ class TaipeiZooZoneListFragment : BaseFragment(), TaipeiZooZoneListContracts.Vie
 
     private lateinit var binding: FragmentTaipeiZooZoneListBinding
     private val presenter: TaipeiZooZoneListPresenter by lazy { TaipeiZooZoneListPresenter(this) }
-    private val taipeiZooZoneListAdapter: TaipeiZooZoneListAdapter by lazy { TaipeiZooZoneListAdapter() }
+
+    private val onItemClickCallBack: ((() -> Unit)) = {
+
+    }
+
+    private val taipeiZooZoneListAdapter: TaipeiZooZoneListAdapter by lazy { TaipeiZooZoneListAdapter(onItemClickCallBack) }
 
     companion object {
         fun newInstance(): TaipeiZooZoneListFragment {
