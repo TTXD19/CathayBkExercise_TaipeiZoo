@@ -12,8 +12,8 @@ class TaipeiZooZoneListViewHolder(
 
     fun setData(zooZoneDetail: ZooZoneDetail, itemClickCallBack: ((ZooZoneDetail) -> Unit)) {
         binding.apply {
-            tvArea.text = zooZoneDetail.e_category
-            tvZone.text = zooZoneDetail.e_name
+            tvArea.text = zooZoneDetail.e_name
+            tvZone.text = zooZoneDetail.e_category
             tvZoneDesc.text = zooZoneDetail.e_info
             btnExplore.isVisible = zooZoneDetail.isItemExpand
             tvZoneDesc.maxLines = if (zooZoneDetail.isItemExpand) 10 else 3

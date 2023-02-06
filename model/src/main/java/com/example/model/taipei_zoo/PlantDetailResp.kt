@@ -25,4 +25,8 @@ data class PlantDetail(
     val F_Pic03_URL: String,
     val F_Pic04_URL: String,
     @SerializedName("F_Function＆Application") val application: String,
-)
+){
+    fun getLocationList(): List<String>{
+        return F_Location.split("；")
+    }
+}

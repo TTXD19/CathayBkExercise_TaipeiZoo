@@ -5,6 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/rv_plant_details"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginHorizontal="18dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:elevation="10dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
+<!--        app:spanCount="3"-->
+<!--        tools:listitem="@layout/vh_plant_detail" />-->
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
@@ -106,7 +118,7 @@
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/noto_sans"
-                android:text="區內相關植物"
+                android:text="園區內相關植物"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -124,7 +136,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_zone_plant_title"
                 app:spanCount="3"
-                tools:layout_editor_absoluteX="16dp"
                 tools:listitem="@layout/vh_plant_detail" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

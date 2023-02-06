@@ -5,19 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.cachedIn
-import androidx.paging.filter
+import androidx.paging.*
 import com.bumptech.glide.Glide
 import com.example.cathaybkexercise_taipeizoo.BaseFragment
 import com.example.cathaybkexercise_taipeizoo.databinding.FragmentTaipeiZooZoneDetailBinding
+import com.example.model.taipei_zoo.PlantDetailResp
 import com.example.model.taipei_zoo.ZooZoneDetail
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -27,6 +26,11 @@ class TaipeiZoneDetailFragment(
 
     private lateinit var binding: FragmentTaipeiZooZoneDetailBinding
     private val taipeiPlantDetailAdapter: TaipeiPlantDetailAdapter by lazy { TaipeiPlantDetailAdapter() }
+    private val taipeiZooDetailPresenter: TaipeiZoneDetailPresenter by lazy {
+        TaipeiZoneDetailPresenter(
+            this
+        )
+    }
 
     companion object {
         fun newInstance(zooZoneDetail: ZooZoneDetail): TaipeiZoneDetailFragment {
@@ -47,34 +51,29 @@ class TaipeiZoneDetailFragment(
         super.onViewCreated(view, savedInstanceState)
 
         initView()
-        initPlantSection()
+        initData()
     }
 
-    private fun initView() {
-        binding.rvPlantDetails.adapter = taipeiPlantDetailAdapter
-        Glide.with(binding.root.context).load(zooZoneDetail.e_pic_url).centerCrop().into(binding.imageZone)
-    }
-
-    private fun initPlantSection() {
-        val plantFlow = Pager(
-            PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false,
-                initialLoadSize = 20,
-                prefetchDistance = 5
-            )
-        ) {
-            TaipeiPlantPagingSource(requireContext())
-        }.flow.cachedIn(viewLifecycleOwner.lifecycleScope)
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            plantFlow.collectLatest { pagingData ->
-                taipeiPlantDetailAdapter.submitData(pagingData)
-            }
+    private fun initData() {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            taipeiZooDetailPresenter.fetchZoneDetail()
         }
     }
 
-    override fun onZoneDetailUpdate() {
+    private fun initView() {
+        binding.apply {
+            tvZoneTitle.text = zooZoneDetail.e_name
+            tvZoneArea.text = zooZoneDetail.e_category
+            tvZoneDesc.text = zooZoneDetail.e_info
+            rvPlantDetails.adapter = taipeiPlantDetailAdapter
+            Glide.with(root.context).load(zooZoneDetail.e_pic_url).centerCrop().into(imageZone)
+        }
 
+    }
+
+    override fun onZoneDetailUpdate(response: PlantDetailResp) {
+        val filteredPlants =
+            response.results.filter { it.getLocationList().contains(zooZoneDetail.e_name) }
+        taipeiPlantDetailAdapter.submitList(filteredPlants)
     }
 }

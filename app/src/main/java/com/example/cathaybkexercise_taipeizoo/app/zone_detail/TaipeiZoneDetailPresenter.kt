@@ -16,10 +16,10 @@ class TaipeiZoneDetailPresenter(
     ).taipeiZooRepository()
 
     override suspend fun fetchZoneDetail() {
-        val result = taipeiZooRepository.getZonePlantDetails(offset = 0, 20)
+        val result = taipeiZooRepository.getZonePlantDetails(offset = 0, 110)
         withContext(Dispatchers.Main) {
             if (result is DataResult.Success) {
-                view.onZoneDetailUpdate()
+                view.onZoneDetailUpdate(result.data)
             }
         }
     }
