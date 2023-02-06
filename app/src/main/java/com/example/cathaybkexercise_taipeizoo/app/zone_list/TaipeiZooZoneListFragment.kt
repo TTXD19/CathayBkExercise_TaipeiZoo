@@ -9,6 +9,7 @@ import com.example.cathaybkexercise_taipeizoo.BaseFragment
 import com.example.cathaybkexercise_taipeizoo.app.TaipeiZooActivityHandler
 import com.example.cathaybkexercise_taipeizoo.databinding.FragmentTaipeiZooZoneListBinding
 import com.example.model.taipei_zoo.TaipeiZooResp
+import com.example.model.taipei_zoo.ZooZoneDetail
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,8 +20,8 @@ class TaipeiZooZoneListFragment : BaseFragment(), TaipeiZooZoneListContracts.Vie
     private lateinit var binding: FragmentTaipeiZooZoneListBinding
     private val presenter: TaipeiZooZoneListPresenter by lazy { TaipeiZooZoneListPresenter(this) }
 
-    private val onItemClickCallBack: ((() -> Unit)) = {
-        getActivityHandler(TaipeiZooActivityHandler::class.java)?.goTaipeiZooZoneDetail()
+    private val onItemClickCallBack: (((ZooZoneDetail) -> Unit)) = {
+        getActivityHandler(TaipeiZooActivityHandler::class.java)?.goTaipeiZooZoneDetail(it)
     }
 
     private val taipeiZooZoneListAdapter: TaipeiZooZoneListAdapter by lazy { TaipeiZooZoneListAdapter(onItemClickCallBack) }

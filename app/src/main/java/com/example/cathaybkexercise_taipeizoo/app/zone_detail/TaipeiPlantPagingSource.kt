@@ -25,11 +25,9 @@ class TaipeiPlantPagingSource(context: Context) : PagingSource<Int, PlantDetail>
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PlantDetail> {
         val offset = params.key ?: INITIAL_OFFSET
         try {
-            val dataResult =
-                taipeiZooRepository.getZonePlantDetails(offset = offset, limit = ITEM_LIMIT_SIZE)
+            val dataResult = taipeiZooRepository.getZonePlantDetails(offset = offset, limit = ITEM_LIMIT_SIZE)
             if (dataResult is DataResult.Success) {
-                val nextKey =
-                    if (dataResult.data.results.isEmpty()) null else offset + ITEM_LIMIT_SIZE
+                val nextKey = if (dataResult.data.results.isEmpty()) null else offset + ITEM_LIMIT_SIZE
                 return LoadResult.Page(
                     data = dataResult.data.results,
                     prevKey = null,
@@ -47,8 +45,8 @@ class TaipeiPlantPagingSource(context: Context) : PagingSource<Int, PlantDetail>
     override fun getRefreshKey(state: PagingState<Int, PlantDetail>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
-            anchorPage?.prevKey?.plus(ITEM_LIMIT_SIZE)
-                ?: anchorPage?.nextKey?.minus(ITEM_LIMIT_SIZE)
+            anchorPage?.prevKey?.plus(1)
+                ?: anchorPage?.nextKey?.minus(1)
         }
     }
 

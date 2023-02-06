@@ -10,17 +10,17 @@ class TaipeiZooZoneListViewHolder(
     private val binding: VhZoneIntroBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun setData(zooZoneDetail: ZooZoneDetail, itemClickCallBack: (() -> Unit)) {
+    fun setData(zooZoneDetail: ZooZoneDetail, itemClickCallBack: ((ZooZoneDetail) -> Unit)) {
         binding.apply {
             tvArea.text = zooZoneDetail.e_category
             tvZone.text = zooZoneDetail.e_name
             tvZoneDesc.text = zooZoneDetail.e_info
             btnExplore.isVisible = zooZoneDetail.isItemExpand
             tvZoneDesc.maxLines = if (zooZoneDetail.isItemExpand) 10 else 3
-            Glide.with(root.context).load(zooZoneDetail.e_pic_url).centerCrop().into(imageZone);
+            Glide.with(root.context).load(zooZoneDetail.e_pic_url).centerCrop().into(imageZone)
 
             itemView.setOnClickListener {
-                itemClickCallBack.invoke()
+                itemClickCallBack.invoke(zooZoneDetail)
             }
         }
     }

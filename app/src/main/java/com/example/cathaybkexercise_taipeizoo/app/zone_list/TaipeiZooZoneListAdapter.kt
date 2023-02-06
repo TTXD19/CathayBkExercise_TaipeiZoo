@@ -8,8 +8,9 @@ import com.example.cathaybkexercise_taipeizoo.databinding.VhZoneIntroBinding
 import com.example.model.taipei_zoo.ZooZoneDetail
 
 class TaipeiZooZoneListAdapter(
-    private val onItemClickCallBack: ((() -> Unit))
+    private val onItemClickCallBack: (((ZooZoneDetail) -> Unit))
 ) : ListAdapter<ZooZoneDetail, TaipeiZooZoneListViewHolder>(DiffCallBack()){
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaipeiZooZoneListViewHolder {
         return TaipeiZooZoneListViewHolder(

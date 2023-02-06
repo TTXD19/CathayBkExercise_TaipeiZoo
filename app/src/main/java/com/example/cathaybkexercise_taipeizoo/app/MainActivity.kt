@@ -7,6 +7,7 @@ import com.example.cathaybkexercise_taipeizoo.R
 import com.example.cathaybkexercise_taipeizoo.app.zone_detail.TaipeiZoneDetailFragment
 import com.example.cathaybkexercise_taipeizoo.app.zone_list.TaipeiZooZoneListFragment
 import com.example.cathaybkexercise_taipeizoo.databinding.ActivityMainBinding
+import com.example.model.taipei_zoo.ZooZoneDetail
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,9 +31,9 @@ class MainActivity : AppCompatActivity(), TaipeiZooActivityHandler {
         }
     }
 
-    override fun goTaipeiZooZoneDetail() {
+    override fun goTaipeiZooZoneDetail(zooZoneDetail: ZooZoneDetail) {
         supportFragmentManager.commit {
-            replace(R.id.frame_layout, TaipeiZoneDetailFragment.newInstance())
+            replace(R.id.frame_layout, TaipeiZoneDetailFragment.newInstance(zooZoneDetail))
             setReorderingAllowed(true)
             addToBackStack("name") // name can be null
         }

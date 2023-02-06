@@ -1,6 +1,8 @@
 package com.example.cathaybkexercise_taipeizoo.app
 
+import com.example.model.taipei_zoo.ZooZoneDetail
+
 interface TaipeiZooActivityHandler {
     fun goTaipeiZooZoneList()
-    fun goTaipeiZooZoneDetail()
+    fun goTaipeiZooZoneDetail(zooZoneDetail: ZooZoneDetail)
 }
