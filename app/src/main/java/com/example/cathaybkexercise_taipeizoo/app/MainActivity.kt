@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity(), TaipeiZooActivityHandler {
         supportFragmentManager.commit {
             replace(R.id.frame_layout, TaipeiZooZoneListFragment.newInstance())
             setReorderingAllowed(true)
+            addToBackStack("Test")
         }
     }
 
@@ -35,5 +36,13 @@ class MainActivity : AppCompatActivity(), TaipeiZooActivityHandler {
             setReorderingAllowed(true)
             addToBackStack("name") // name can be null
         }
+    }
+
+    override fun onBackPressed() {
+        val currentFragment = supportFragmentManager.fragments[1]
+        if (currentFragment is TaipeiZoneDetailFragment) {
+            supportFragmentManager.popBackStack(null, 0)
+        }
+//        onBackPressedDispatcher.onBackPressed()
     }
 }
