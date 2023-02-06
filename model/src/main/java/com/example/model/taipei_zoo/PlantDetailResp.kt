@@ -12,8 +12,8 @@ data class PlantDetailResp(
 )
 
 data class PlantDetail(
-    val id: Int,
-    val F_Name_Ch: String,
+    @SerializedName("_id") val id: Int,
+    @SerializedName("\uFEFFF_Name_Ch") val chName: String,
     val F_AlsoKnown: String,
     val F_Location: String,
     val F_Name_En: String,
