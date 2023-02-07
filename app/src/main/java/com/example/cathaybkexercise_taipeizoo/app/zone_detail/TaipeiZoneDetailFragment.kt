@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.cathaybkexercise_taipeizoo.BaseFragment
@@ -50,6 +51,7 @@ class TaipeiZoneDetailFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        getActivityHandler(TaipeiZooActivityHandler::class.java)?.setToolbarAsZooZoneDetailUse()
         initView()
         initData()
     }
@@ -67,13 +69,19 @@ class TaipeiZoneDetailFragment(
 
     private fun initData() {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            binding.progress.isVisible = true
+            binding.rvPlantDetails.isVisible = false
             taipeiZooDetailPresenter.fetchZoneDetail()
         }
     }
 
     override fun onZoneDetailUpdate(response: PlantDetailResp) {
-        val filteredPlants =
-            response.results.filter { it.getLocationList().contains(zooZoneDetail.e_name) }
+        // 拿取分佈於該館區的植物簡介
+        val filteredPlants = response.results.filter {
+            it.getLocationList().contains(zooZoneDetail.e_name)
+        }
         taipeiPlantDetailAdapter.submitList(filteredPlants)
+        binding.progress.isVisible = false
+        binding.rvPlantDetails.isVisible = true
     }
 }

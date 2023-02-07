@@ -2,6 +2,8 @@ package com.example.cathaybkexercise_taipeizoo.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.fragment.app.commit
 import com.example.cathaybkexercise_taipeizoo.R
 import com.example.cathaybkexercise_taipeizoo.app.plant_detail.PlantDetailFragment
@@ -29,15 +31,16 @@ class MainActivity : AppCompatActivity(), TaipeiZooActivityHandler {
         supportFragmentManager.commit {
             replace(R.id.frame_layout, TaipeiZooZoneListFragment.newInstance())
             setReorderingAllowed(true)
-            addToBackStack("Test")
+            addToBackStack(null)
         }
     }
 
     override fun goTaipeiZooZoneDetail(zooZoneDetail: ZooZoneDetail) {
         supportFragmentManager.commit {
+            setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out)
             replace(R.id.frame_layout, TaipeiZoneDetailFragment.newInstance(zooZoneDetail))
             setReorderingAllowed(true)
-            addToBackStack("name") // name can be null
+            addToBackStack(null)
         }
     }
 
@@ -46,11 +49,50 @@ class MainActivity : AppCompatActivity(), TaipeiZooActivityHandler {
             setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out)
             replace(R.id.frame_layout, PlantDetailFragment.newInstance(plantDetail))
             setReorderingAllowed(true)
-            addToBackStack("name") // name can be null
+            addToBackStack(null)
+        }
+    }
+
+    override fun setToolbarAsZooZoneListUse() {
+        binding.apply {
+            imageBackArrow.isVisible = false
+            tvTitle.text = "台北市立動物園"
+        }
+    }
+
+    override fun setToolbarAsZooZoneDetailUse() {
+        binding.apply {
+            imageBackArrow.isVisible = true
+            imageBackArrow.setOnClickListener {
+                supportFragmentManager.popBackStack(null, 0)
+            }
+            tvTitle.text = "園區資訊"
+        }
+    }
+
+    override fun setToolbarAsPlantDetailUse() {
+        binding.apply {
+            imageBackArrow.isVisible = true
+            imageBackArrow.setOnClickListener {
+                supportFragmentManager.popBackStack(null, 0)
+            }
+            tvTitle.text = "植物細節"
         }
     }
 
     override fun onBackPressed() {
-        supportFragmentManager.popBackStack(null, 0)
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.frame_layout)
+        if (currentFragment is TaipeiZooZoneListFragment) showLeaveDialog()
+        else supportFragmentManager.popBackStack(null, 0)
+    }
+
+    private fun showLeaveDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("離開")
+            .setMessage("離開將會關閉 app")
+            .setPositiveButton("確定") { _, _ -> finish() }
+            .setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
     }
 }

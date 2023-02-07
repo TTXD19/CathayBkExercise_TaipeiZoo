@@ -7,4 +7,7 @@ interface TaipeiZooActivityHandler {
     fun goTaipeiZooZoneList()
     fun goTaipeiZooZoneDetail(zooZoneDetail: ZooZoneDetail)
     fun goPlantDetail(plantDetail: PlantDetail)
+    fun setToolbarAsZooZoneListUse()
+    fun setToolbarAsZooZoneDetailUse()
+    fun setToolbarAsPlantDetailUse()
 }

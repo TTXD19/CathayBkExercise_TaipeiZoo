@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.example.cathaybkexercise_taipeizoo.BaseFragment
 import com.example.cathaybkexercise_taipeizoo.app.TaipeiZooActivityHandler
@@ -12,6 +13,7 @@ import com.example.model.taipei_zoo.TaipeiZooResp
 import com.example.model.taipei_zoo.ZooZoneDetail
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -24,7 +26,11 @@ class TaipeiZooZoneListFragment : BaseFragment(), TaipeiZooZoneListContracts.Vie
         getActivityHandler(TaipeiZooActivityHandler::class.java)?.goTaipeiZooZoneDetail(it)
     }
 
-    private val taipeiZooZoneListAdapter: TaipeiZooZoneListAdapter by lazy { TaipeiZooZoneListAdapter(onItemClickCallBack) }
+    private val taipeiZooZoneListAdapter: TaipeiZooZoneListAdapter by lazy {
+        TaipeiZooZoneListAdapter(
+            onItemClickCallBack
+        )
+    }
 
     companion object {
         fun newInstance(): TaipeiZooZoneListFragment {
@@ -44,11 +50,26 @@ class TaipeiZooZoneListFragment : BaseFragment(), TaipeiZooZoneListContracts.Vie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        getActivityHandler(TaipeiZooActivityHandler::class.java)?.setToolbarAsZooZoneListUse()
         initView()
+        initListener()
+        callZooListData()
     }
 
     private fun initView() {
         binding.rvZooZone.adapter = taipeiZooZoneListAdapter
+    }
+
+    private fun initListener() {
+        binding.btnRetryMessage.setOnClickListener {
+            callZooListData()
+        }
+    }
+
+    private fun callZooListData() {
+        binding.groupRetry.isVisible = false
+        binding.progress.isVisible = true
+        binding.rvZooZone.isVisible = false
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             presenter.fetchTaipeiZooZoneList()
         }
@@ -56,5 +77,14 @@ class TaipeiZooZoneListFragment : BaseFragment(), TaipeiZooZoneListContracts.Vie
 
     override fun onTaipeiZooZoneListUpdate(taipeiZooResp: TaipeiZooResp) {
         taipeiZooZoneListAdapter.submitList(taipeiZooResp.results)
+        binding.groupRetry.isVisible = false
+        binding.progress.isVisible = false
+        binding.rvZooZone.isVisible = true
+    }
+
+    override fun onTaipeiZooZoneListUpdateFailed() {
+        binding.groupRetry.isVisible = true
+        binding.progress.isVisible = false
+        binding.rvZooZone.isVisible = false
     }
 }

@@ -4,6 +4,7 @@ import com.example.cathaybkexercise_taipeizoo.di.PresenterProvider
 import com.example.data.data_source.DataResult
 import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 
@@ -21,7 +22,11 @@ class TaipeiZooZoneListPresenter(
         withContext(Dispatchers.Main) {
             if (result is DataResult.Success) {
                 view.onTaipeiZooZoneListUpdate(result.data)
+                return@withContext
             }
+            // Delay to prevent failure loading to fast
+            delay(2000)
+            view.onTaipeiZooZoneListUpdateFailed()
         }
     }
 }

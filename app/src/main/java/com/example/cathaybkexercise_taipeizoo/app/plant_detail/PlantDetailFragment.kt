@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.cathaybkexercise_taipeizoo.BaseFragment
+import com.example.cathaybkexercise_taipeizoo.app.TaipeiZooActivityHandler
 import com.example.cathaybkexercise_taipeizoo.databinding.FragmentPlantDetailBinding
 import com.example.model.taipei_zoo.PlantDetail
 
@@ -31,6 +32,7 @@ class PlantDetailFragment(private val plantDetail: PlantDetail) : BaseFragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        getActivityHandler(TaipeiZooActivityHandler::class.java)?.setToolbarAsPlantDetailUse()
         initView()
     }
 

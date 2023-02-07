@@ -7,6 +7,7 @@ interface TaipeiZooZoneListContracts {
 
     interface View: BaseViewInterface{
         fun onTaipeiZooZoneListUpdate(taipeiZooResp: TaipeiZooResp)
+        fun onTaipeiZooZoneListUpdateFailed()
     }
 
     interface Presenter{
