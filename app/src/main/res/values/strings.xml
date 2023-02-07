@@ -1,3 +1,14 @@
 <resources>
+
     <string name="app_name">CathayBkExercise_TaipeiZoo</string>
+
+    <string name="plant_name">%1s - %2s</string>
+    <string name="plant_name_latin">拉丁名：%1s</string>
+    <string name="plant_name_type">植物科：%1s</string>
+    <string name="plant_name_intro_title">簡介：</string>
+    <string name="plant_name_characteristics_title">特色：</string>
+    <string name="plant_name_application_title">應用：</string>
+    <string name="plant_name_areas_title">所屬區域：</string>
+    <string name="plant_name_names_title">我還可以被稱：</string>
+    <string name="plant_no_image">目前此植物尚未有圖片</string>
 </resources>

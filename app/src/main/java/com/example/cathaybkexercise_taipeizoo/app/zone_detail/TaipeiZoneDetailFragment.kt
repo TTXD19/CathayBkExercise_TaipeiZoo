@@ -101,8 +101,7 @@ class TaipeiZoneDetailFragment(
             progress.isVisible = false
             rvPlantDetails.isVisible = true
             // 拿取分佈於該館區的植物簡介
-            val filteredPlants =
-                response.results.filter { it.getLocationList().contains(zooZoneDetail.e_name) }
+            val filteredPlants = response.results.filter { it.getLocationList().contains(zooZoneDetail.e_name) }
             if (filteredPlants.isEmpty()) {
                 binding.apply {
                     imageRetryMessage.isVisible = true

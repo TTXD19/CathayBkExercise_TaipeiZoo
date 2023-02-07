@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -46,8 +45,6 @@ class PlantDetailFragment(private val plantDetail: PlantDetail) : BaseFragment()
 
     private fun initView() {
         binding.apply {
-            tvPlantArea.text = plantDetail.chName
-            tvPlantBrief.text = plantDetail.F_Brief
             Glide.with(root.context)
                 .load(plantDetail.F_Pic01_URL)
                 .placeholder(R.drawable.default_plant)
@@ -75,6 +72,14 @@ class PlantDetailFragment(private val plantDetail: PlantDetail) : BaseFragment()
                 })
                 .centerCrop()
                 .into(imagePlantDetail)
+            tvPlantTitle.text = getString(R.string.plant_name, plantDetail.chName, plantDetail.F_Name_En)
+            tvPlantSubtitle.text = getString(R.string.plant_name_latin, plantDetail.F_Name_Latin)
+            tvPlantFamily.text = getString(R.string.plant_name_type, plantDetail.F_Family)
+            tvPlantBrief.text = plantDetail.F_Brief
+            tvPlantFeatureDesc.text = plantDetail.F_Feature
+            tvPlantApplicationDesc.text = plantDetail.application
+            tvPlantArea.text = plantDetail.F_Location
+            tvPlantName.text = plantDetail.F_AlsoKnown
         }
     }
 }

@@ -18,6 +18,7 @@ data class PlantDetail(
     val F_Location: String,
     val F_Name_En: String,
     val F_Name_Latin: String,
+    val F_Family: String,
     val F_Brief: String,
     val F_Feature: String,
     val F_Pic01_URL: String,
