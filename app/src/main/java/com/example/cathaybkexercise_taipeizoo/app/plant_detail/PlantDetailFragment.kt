@@ -78,7 +78,7 @@ class PlantDetailFragment(private val plantDetail: PlantDetail) : BaseFragment()
             tvPlantBrief.text = plantDetail.F_Brief
             tvPlantFeatureDesc.text = plantDetail.F_Feature
             tvPlantApplicationDesc.text = plantDetail.application
-            tvPlantArea.text = plantDetail.F_Location
+            tvPlantArea.text = plantDetail.F_Location.replace("；", "、")
             tvPlantName.text = plantDetail.F_AlsoKnown
         }
     }
