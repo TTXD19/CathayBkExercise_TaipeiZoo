@@ -16,6 +16,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_no_Image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="目前此植物尚未有圖片！"
+            android:textColor="@color/darker_gray"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_plant_detail" />
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_plant_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -28,7 +43,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image_plant_detail" />
+            app:layout_constraintTop_toBottomOf="@id/tv_plant_no_Image" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_plant_subtitle"
