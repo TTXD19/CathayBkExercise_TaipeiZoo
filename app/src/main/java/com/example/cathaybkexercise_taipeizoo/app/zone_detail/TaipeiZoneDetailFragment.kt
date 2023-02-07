@@ -47,7 +47,7 @@ class TaipeiZoneDetailFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentTaipeiZooZoneDetailBinding.inflate(inflater, container, false);
+        binding = FragmentTaipeiZooZoneDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 

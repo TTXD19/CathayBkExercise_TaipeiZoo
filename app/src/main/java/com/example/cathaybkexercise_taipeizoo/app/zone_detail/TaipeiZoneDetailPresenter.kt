@@ -11,13 +11,18 @@ class TaipeiZoneDetailPresenter(
     private val view: TaipeiZoneDetailContracts.View
 ) : TaipeiZoneDetailContracts.Presenter {
 
+    companion object{
+        private const val MAX_DATA_LIMIT = 110
+        private const val INITIAL_OFFSET = 0
+    }
+
     private val taipeiZooRepository = EntryPointAccessors.fromApplication(
         view.getFragmentContext(),
         PresenterProvider.TaipeiZooPresenterProvider::class.java
     ).taipeiZooRepository()
 
     override suspend fun fetchZoneDetail() {
-        val result = taipeiZooRepository.getZonePlantDetails(offset = 0, 110)
+        val result = taipeiZooRepository.getZonePlantDetails(offset = INITIAL_OFFSET, limit = MAX_DATA_LIMIT)
         withContext(Dispatchers.Main) {
             if (result is DataResult.Success) {
                 view.onZoneDetailUpdate(result.data)

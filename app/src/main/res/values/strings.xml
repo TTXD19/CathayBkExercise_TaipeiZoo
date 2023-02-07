@@ -2,6 +2,24 @@
 
     <string name="app_name">CathayBkExercise_TaipeiZoo</string>
 
+    <string name="taipei_zoo">台北市立動物園</string>
+    <string name="zoo_zone_info">園區資訊</string>
+    <string name="plant_detail">植物細節</string>
+
+    <string name="leave_title">離開</string>
+    <string name="leave_message">離開將會關閉 app</string>
+    <string name="leave_confirm">確定</string>
+    <string name="leave_cancel">取消</string>
+
+    <string name="animal_resting">目前動物還在休息中\n請稍後再試！</string>
+    <string name="feeding">餵食</string>
+    <string name="plant_growing">目前植物還在成長中\n請稍後再試！</string>
+    <string name="watering">澆水</string>
+
+    <string name="open_video">點我開影片介紹</string>
+
+    <string name="plant_category">園區內相關植物</string>
+
     <string name="plant_name">%1s - %2s</string>
     <string name="plant_name_latin">拉丁名：%1s</string>
     <string name="plant_name_type">植物科：%1s</string>

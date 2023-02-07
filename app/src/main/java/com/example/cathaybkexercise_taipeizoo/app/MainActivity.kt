@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), TaipeiZooActivityHandler {
     override fun setToolbarAsZooZoneListUse() {
         binding.apply {
             imageBackArrow.isVisible = false
-            tvTitle.text = "台北市立動物園"
+            tvTitle.text = getString(R.string.taipei_zoo)
         }
     }
 
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(), TaipeiZooActivityHandler {
             imageBackArrow.setOnClickListener {
                 supportFragmentManager.popBackStack(null, 0)
             }
-            tvTitle.text = "園區資訊"
+            tvTitle.text = getString(R.string.zoo_zone_info)
         }
     }
 
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity(), TaipeiZooActivityHandler {
             imageBackArrow.setOnClickListener {
                 supportFragmentManager.popBackStack(null, 0)
             }
-            tvTitle.text = "植物細節"
+            tvTitle.text = getString(R.string.plant_detail)
         }
     }
 
@@ -88,10 +88,10 @@ class MainActivity : AppCompatActivity(), TaipeiZooActivityHandler {
 
     private fun showLeaveDialog() {
         AlertDialog.Builder(this)
-            .setTitle("離開")
-            .setMessage("離開將會關閉 app")
-            .setPositiveButton("確定") { _, _ -> finish() }
-            .setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
+            .setTitle(R.string.leave_title)
+            .setMessage(R.string.leave_message)
+            .setPositiveButton(R.string.leave_confirm) { _, _ -> finish() }
+            .setNegativeButton(R.string.leave_cancel) { dialog, _ -> dialog.dismiss() }
             .create()
             .show()
     }

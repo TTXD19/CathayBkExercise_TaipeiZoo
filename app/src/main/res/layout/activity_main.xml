@@ -30,14 +30,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
         android:fontFamily="@font/noto_sans"
-        android:text="台北市立動物園"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/image_back_arrow"
         app:layout_constraintStart_toEndOf="@id/image_back_arrow"
         app:layout_constraintTop_toTopOf="@id/image_back_arrow"
-        app:layout_goneMarginStart="18dp" />
+        app:layout_goneMarginStart="18dp"
+        tools:text="台北市立動物園" />
 
     <View
         android:layout_width="match_parent"

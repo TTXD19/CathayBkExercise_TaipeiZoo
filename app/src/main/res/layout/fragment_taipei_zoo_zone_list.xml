@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans"
-        android:text="目前動物還在休息中\n請稍後再試！"
+        android:text="@string/animal_resting"
         android:textAlignment="center"
         android:textColor="@color/zoo_green"
         android:textSize="12sp"
@@ -51,7 +51,7 @@
         android:insetTop="0dp"
         android:insetRight="0dp"
         android:insetBottom="0dp"
-        android:text="餵食"
+        android:text="@string/feeding"
         app:layout_constraintEnd_toEndOf="@id/tv_retry_message"
         app:layout_constraintStart_toStartOf="@id/tv_retry_message"
         app:layout_constraintTop_toBottomOf="@id/tv_retry_message" />
