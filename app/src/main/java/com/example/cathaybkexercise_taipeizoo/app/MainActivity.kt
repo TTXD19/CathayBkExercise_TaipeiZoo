@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.commit
 import com.example.cathaybkexercise_taipeizoo.R
+import com.example.cathaybkexercise_taipeizoo.app.plant_detail.PlantDetailFragment
 import com.example.cathaybkexercise_taipeizoo.app.zone_detail.TaipeiZoneDetailFragment
 import com.example.cathaybkexercise_taipeizoo.app.zone_list.TaipeiZooZoneListFragment
 import com.example.cathaybkexercise_taipeizoo.databinding.ActivityMainBinding
+import com.example.model.taipei_zoo.PlantDetail
 import com.example.model.taipei_zoo.ZooZoneDetail
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,11 +41,15 @@ class MainActivity : AppCompatActivity(), TaipeiZooActivityHandler {
         }
     }
 
-    override fun onBackPressed() {
-        val currentFragment = supportFragmentManager.fragments[1]
-        if (currentFragment is TaipeiZoneDetailFragment) {
-            supportFragmentManager.popBackStack(null, 0)
+    override fun goPlantDetail(plantDetail: PlantDetail) {
+        supportFragmentManager.commit {
+            replace(R.id.frame_layout, PlantDetailFragment.newInstance(plantDetail))
+            setReorderingAllowed(true)
+            addToBackStack("name") // name can be null
         }
-//        onBackPressedDispatcher.onBackPressed()
+    }
+
+    override fun onBackPressed() {
+        supportFragmentManager.popBackStack(null, 0)
     }
 }

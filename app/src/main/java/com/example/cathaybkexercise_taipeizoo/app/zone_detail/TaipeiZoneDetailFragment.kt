@@ -5,18 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.*
 import com.bumptech.glide.Glide
 import com.example.cathaybkexercise_taipeizoo.BaseFragment
+import com.example.cathaybkexercise_taipeizoo.app.TaipeiZooActivityHandler
 import com.example.cathaybkexercise_taipeizoo.databinding.FragmentTaipeiZooZoneDetailBinding
+import com.example.model.taipei_zoo.PlantDetail
 import com.example.model.taipei_zoo.PlantDetailResp
 import com.example.model.taipei_zoo.ZooZoneDetail
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -25,11 +22,14 @@ class TaipeiZoneDetailFragment(
 ) : BaseFragment(), TaipeiZoneDetailContracts.View {
 
     private lateinit var binding: FragmentTaipeiZooZoneDetailBinding
-    private val taipeiPlantDetailAdapter: TaipeiPlantDetailAdapter by lazy { TaipeiPlantDetailAdapter() }
     private val taipeiZooDetailPresenter: TaipeiZoneDetailPresenter by lazy {
-        TaipeiZoneDetailPresenter(
-            this
-        )
+        TaipeiZoneDetailPresenter(this)
+    }
+    private val onItemClickCallBack: ((PlantDetail) -> Unit) = {
+        getActivityHandler(TaipeiZooActivityHandler::class.java)?.goPlantDetail(it)
+    }
+    private val taipeiPlantDetailAdapter: TaipeiPlantDetailAdapter by lazy {
+        TaipeiPlantDetailAdapter(onItemClickCallBack)
     }
 
     companion object {
@@ -51,13 +51,8 @@ class TaipeiZoneDetailFragment(
         super.onViewCreated(view, savedInstanceState)
 
         initView()
+        initListener()
         initData()
-    }
-
-    private fun initData() {
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-            taipeiZooDetailPresenter.fetchZoneDetail()
-        }
     }
 
     private fun initView() {
@@ -69,6 +64,18 @@ class TaipeiZoneDetailFragment(
             Glide.with(root.context).load(zooZoneDetail.e_pic_url).centerCrop().into(imageZone)
         }
 
+    }
+
+    private fun initListener() {
+        binding.imageBackArrow.setOnClickListener {
+            activity?.onBackPressed()
+        }
+    }
+
+    private fun initData() {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            taipeiZooDetailPresenter.fetchZoneDetail()
+        }
     }
 
     override fun onZoneDetailUpdate(response: PlantDetailResp) {

@@ -7,15 +7,18 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.cathaybkexercise_taipeizoo.databinding.VhPlantDetailBinding
 import com.example.model.taipei_zoo.PlantDetail
 
-class TaipeiPlantDetailAdapter : ListAdapter<PlantDetail, TaipeiPlantDetailViewHolder>(PlantComparator()) {
+class TaipeiPlantDetailAdapter(
+    private val onItemClickCallBack: ((PlantDetail) -> Unit)
+) : ListAdapter<PlantDetail, TaipeiPlantDetailViewHolder>(PlantComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaipeiPlantDetailViewHolder {
         return TaipeiPlantDetailViewHolder(
-            VhPlantDetailBinding.inflate(
+            binding = VhPlantDetailBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            onItemClickCallBack = onItemClickCallBack
         )
     }
 
