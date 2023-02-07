@@ -1,5 +1,7 @@
 package com.example.cathaybkexercise_taipeizoo.app.zone_detail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +18,7 @@ import com.example.model.taipei_zoo.ZooZoneDetail
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class TaipeiZoneDetailFragment(
@@ -70,30 +73,56 @@ class TaipeiZoneDetailFragment(
 
     private fun initListener() {
         binding.btnRetryMessage.setOnClickListener { callPlantDetails() }
+        binding.tvVideo.setOnClickListener {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(zooZoneDetail.e_url)
+                )
+            )
+        }
     }
 
     private fun callPlantDetails() {
-        binding.progress.isVisible = true
-        binding.rvPlantDetails.isVisible = false
-        binding.groupRetry.isVisible = false
+        binding.apply {
+            progress.isVisible = true
+            rvPlantDetails.isVisible = false
+            imageRetryMessage.isVisible = false
+            tvRetryMessage.isVisible = false
+            btnRetryMessage.isVisible = false
+        }
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             taipeiZooDetailPresenter.fetchZoneDetail()
         }
     }
 
     override fun onZoneDetailUpdate(response: PlantDetailResp) {
-        // 拿取分佈於該館區的植物簡介
-        val filteredPlants = response.results.filter {
-            it.getLocationList().contains(zooZoneDetail.e_name)
+        binding.apply {
+            progress.isVisible = false
+            rvPlantDetails.isVisible = true
+            // 拿取分佈於該館區的植物簡介
+            val filteredPlants =
+                response.results.filter { it.getLocationList().contains(zooZoneDetail.e_name) }
+            if (filteredPlants.isEmpty()) {
+                binding.apply {
+                    imageRetryMessage.isVisible = true
+                    tvRetryMessage.isVisible = true
+                    tvRetryMessage.text = "這個園區目前尚無植物"
+                }
+                return
+            }
+            taipeiPlantDetailAdapter.submitList(filteredPlants)
         }
-        taipeiPlantDetailAdapter.submitList(filteredPlants)
-        binding.progress.isVisible = false
-        binding.rvPlantDetails.isVisible = true
     }
 
     override fun onZoneDetailUpdateFailed() {
-        binding.rvPlantDetails.isVisible = false
-        binding.progress.isVisible = false
-        binding.groupRetry.isVisible = true
+        binding.apply {
+            rvPlantDetails.isVisible = false
+            progress.isVisible = false
+            tvRetryMessage.isVisible = true
+            imageRetryMessage.isVisible = true
+            tvRetryMessage.isVisible = true
+            btnRetryMessage.isVisible = true
+        }
     }
 }
