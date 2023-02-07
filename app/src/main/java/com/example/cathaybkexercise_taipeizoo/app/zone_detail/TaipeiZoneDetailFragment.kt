@@ -53,7 +53,8 @@ class TaipeiZoneDetailFragment(
 
         getActivityHandler(TaipeiZooActivityHandler::class.java)?.setToolbarAsZooZoneDetailUse()
         initView()
-        initData()
+        initListener()
+        callPlantDetails()
     }
 
     private fun initView() {
@@ -67,10 +68,15 @@ class TaipeiZoneDetailFragment(
 
     }
 
-    private fun initData() {
+    private fun initListener() {
+        binding.btnRetryMessage.setOnClickListener { callPlantDetails() }
+    }
+
+    private fun callPlantDetails() {
+        binding.progress.isVisible = true
+        binding.rvPlantDetails.isVisible = false
+        binding.groupRetry.isVisible = false
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-            binding.progress.isVisible = true
-            binding.rvPlantDetails.isVisible = false
             taipeiZooDetailPresenter.fetchZoneDetail()
         }
     }
@@ -83,5 +89,11 @@ class TaipeiZoneDetailFragment(
         taipeiPlantDetailAdapter.submitList(filteredPlants)
         binding.progress.isVisible = false
         binding.rvPlantDetails.isVisible = true
+    }
+
+    override fun onZoneDetailUpdateFailed() {
+        binding.rvPlantDetails.isVisible = false
+        binding.progress.isVisible = false
+        binding.groupRetry.isVisible = true
     }
 }

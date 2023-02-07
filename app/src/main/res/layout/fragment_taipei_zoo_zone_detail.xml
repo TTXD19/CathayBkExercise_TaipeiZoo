@@ -86,11 +86,64 @@
             android:id="@+id/progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:indeterminateTint="@color/zoo_green"
-            app:layout_constraintBottom_toBottomOf="@id/rv_plant_details"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/rv_plant_details" />
+            app:layout_constraintTop_toBottomOf="@id/tv_zone_plant_title"
+            tools:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/image_retry_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/plant_1"
+            app:layout_constraintEnd_toEndOf="@id/tv_retry_message"
+            app:layout_constraintStart_toStartOf="@id/tv_retry_message"
+            app:layout_constraintTop_toBottomOf="@id/tv_zone_plant_title"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_retry_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="目前植物還在成長中\n請稍後再試！"
+            android:textAlignment="center"
+            android:textColor="@color/zoo_green"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_retry_message" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_retry_message"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:backgroundTint="@color/zoo_green"
+            android:text="澆水"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tv_retry_message"
+            app:layout_constraintStart_toStartOf="@id/tv_retry_message"
+            app:layout_constraintTop_toBottomOf="@id/tv_retry_message" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="image_retry_message, tv_retry_message, btn_retry_message" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_plant_details"
@@ -99,11 +152,11 @@
             android:layout_marginHorizontal="18dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="10dp"
-            android:minHeight="100dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_zone_plant_title"
             app:spanCount="3"
-            tools:listitem="@layout/vh_plant_detail" />
+            tools:listitem="@layout/vh_plant_detail"
+            tools:visibility="gone" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

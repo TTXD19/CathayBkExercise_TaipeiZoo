@@ -7,6 +7,7 @@ interface TaipeiZoneDetailContracts {
 
     interface View: BaseViewInterface {
         fun onZoneDetailUpdate(response: PlantDetailResp)
+        fun onZoneDetailUpdateFailed()
     }
 
     interface Presenter {
