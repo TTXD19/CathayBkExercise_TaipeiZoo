@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity(), TaipeiZooActivityHandler {
 
     override fun goPlantDetail(plantDetail: PlantDetail) {
         supportFragmentManager.commit {
+            setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out)
             replace(R.id.frame_layout, PlantDetailFragment.newInstance(plantDetail))
             setReorderingAllowed(true)
             addToBackStack("name") // name can be null

@@ -51,7 +51,6 @@ class TaipeiZoneDetailFragment(
         super.onViewCreated(view, savedInstanceState)
 
         initView()
-        initListener()
         initData()
     }
 
@@ -64,12 +63,6 @@ class TaipeiZoneDetailFragment(
             Glide.with(root.context).load(zooZoneDetail.e_pic_url).centerCrop().into(imageZone)
         }
 
-    }
-
-    private fun initListener() {
-        binding.imageBackArrow.setOnClickListener {
-            activity?.onBackPressed()
-        }
     }
 
     private fun initData() {

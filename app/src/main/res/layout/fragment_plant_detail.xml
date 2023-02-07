@@ -1,234 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/tool_bar"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/image_back_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:src="@drawable/ic_baseline_arrow_back_24"
-        app:layout_constraintBottom_toBottomOf="@id/tool_bar"
-        app:layout_constraintStart_toStartOf="@id/tool_bar"
-        app:layout_constraintTop_toTopOf="@id/tool_bar"
-        tools:ignore="ContentDescription" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray"
-        app:layout_constraintBottom_toBottomOf="@id/tool_bar" />
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tool_bar">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+            android:id="@+id/image_plant_detail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="220dp"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/image_zone"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="九芎 Subcostate Crape Myrtle"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_plant_detail" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_plant_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="九芎 Subcostate Crape Myrtle"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_zone" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="拉丁名：Lagerstroemia subcostata"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_plant_title" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_plant_subtitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="拉丁名：Lagerstroemia subcostata"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_plant_title" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_family"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="植物科：千屈菜科 Lythraceae"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_plant_subtitle" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_plant_family"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="植物科：千屈菜科 Lythraceae"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_plant_subtitle" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_brief_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="12dp"
+            android:elevation="2dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="簡介："
+            android:textColor="@color/zoo_green"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_plant_family" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_plant_brief_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:layout_marginTop="12dp"
-                android:elevation="2dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="簡介："
-                android:textColor="@color/zoo_green"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_plant_family" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_brief"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="5dp"
+            android:elevation="2dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="分布於中低海拔森林及長江以南的地區，為台灣的原生樹種。主要生長在潮濕的崩塌地，有吸水保持土壤之特性，所以是良好的水土保持樹種。"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_plant_brief_title" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_plant_brief"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:layout_marginTop="5dp"
-                android:elevation="2dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="分布於中低海拔森林及長江以南的地區，為台灣的原生樹種。主要生長在潮濕的崩塌地，有吸水保持土壤之特性，所以是良好的水土保持樹種。"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_plant_brief_title" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_feature_desc_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="特色："
+            android:textColor="@color/zoo_green"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_plant_brief" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_plant_feature_desc_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="特色："
-                android:textColor="@color/zoo_green"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_plant_brief" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_feature_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="紅褐色的樹皮剝落後呈灰白色，樹幹光滑堅硬。葉有極短的柄，長橢圓形或卵形，全綠，葉片兩端尖，秋冬轉紅。夏季6～8月開花，花冠白色，花數甚多而密生於枝端，花為圓錐花序頂生，花瓣有長柄，邊緣皺曲像衣裙的花邊花絲長短不一。果實為蒴果，橢圓形約6-8公厘，種子有翅。"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_plant_feature_desc_title" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_plant_feature_desc"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="紅褐色的樹皮剝落後呈灰白色，樹幹光滑堅硬。葉有極短的柄，長橢圓形或卵形，全綠，葉片兩端尖，秋冬轉紅。夏季6～8月開花，花冠白色，花數甚多而密生於枝端，花為圓錐花序頂生，花瓣有長柄，邊緣皺曲像衣裙的花邊花絲長短不一。果實為蒴果，橢圓形約6-8公厘，種子有翅。"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_plant_feature_desc_title" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_application_desc_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="應用："
+            android:textColor="@color/zoo_green"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_plant_feature_desc" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_plant_application_desc_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="應用："
-                android:textColor="@color/zoo_green"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_plant_feature_desc" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_application_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="1. 優良薪炭材：木質堅硬耐燒，是臺灣優良的薪炭材之一。\n2. 水土保持植栽：可栽植於河岸及邊坡供水土保持。\n3. 農具用材：木質堅硬，乾燥後不太會反翹，是做農具的用材。\n4. 食用性：花、根入藥，味淡微苦，敗毒散瘀，花蕾味苦有清香，可生食。葉子是長尾水青蛾幼蟲的食草。"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_plant_application_desc_title" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_plant_application_desc"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="1. 優良薪炭材：木質堅硬耐燒，是臺灣優良的薪炭材之一。\n2. 水土保持植栽：可栽植於河岸及邊坡供水土保持。\n3. 農具用材：木質堅硬，乾燥後不太會反翹，是做農具的用材。\n4. 食用性：花、根入藥，味淡微苦，敗毒散瘀，花蕾味苦有清香，可生食。葉子是長尾水青蛾幼蟲的食草。"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_plant_application_desc_title" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_area_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="所屬區域："
+            android:textColor="@color/zoo_green"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/tv_plant_title"
+            app:layout_constraintStart_toStartOf="@id/tv_plant_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_plant_application_desc" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_plant_area_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="所屬區域："
-                android:textColor="@color/zoo_green"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/tv_plant_title"
-                app:layout_constraintStart_toStartOf="@id/tv_plant_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_plant_application_desc" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_area"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="臺灣動物區；蟲蟲探索谷；熱帶雨林區；鳥園；兩棲爬蟲動物館"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/tv_plant_title"
+            app:layout_constraintStart_toStartOf="@id/tv_plant_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_plant_area_title" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_plant_area"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="臺灣動物區；蟲蟲探索谷；熱帶雨林區；鳥園；兩棲爬蟲動物館"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@id/tv_plant_title"
-                app:layout_constraintStart_toStartOf="@id/tv_plant_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_plant_area_title" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_name_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="我還可以被稱："
+            android:textColor="@color/zoo_green"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/tv_plant_title"
+            app:layout_constraintStart_toStartOf="@id/tv_plant_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_plant_area" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_plant_name_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="我還可以被稱："
-                android:textColor="@color/zoo_green"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/tv_plant_title"
-                app:layout_constraintStart_toStartOf="@id/tv_plant_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_plant_area" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_plant_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="苞飯花、拘那花、小果紫薇、南紫薇、猴不爬、怕癢樹、南紫薇、九荊、馬鈴花、蚊仔花"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@id/tv_plant_title"
-                app:layout_constraintStart_toStartOf="@id/tv_plant_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_plant_name_title" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_plant_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="苞飯花、拘那花、小果紫薇、南紫薇、猴不爬、怕癢樹、南紫薇、九荊、馬鈴花、蚊仔花"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/tv_plant_title"
+            app:layout_constraintStart_toStartOf="@id/tv_plant_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_plant_name_title" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

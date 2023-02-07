@@ -38,8 +38,8 @@ class PlantDetailFragment(private val plantDetail: PlantDetail) : BaseFragment()
         binding.apply {
             tvPlantArea.text = plantDetail.chName
             tvPlantBrief.text = plantDetail.F_Brief
-            Glide.with(root.context).load(plantDetail.F_Pic01_URL).centerCrop().into(imageZone)
+            Glide.with(root.context).load(plantDetail.F_Pic01_URL).centerCrop()
+                .into(imagePlantDetail)
         }
-
     }
 }
