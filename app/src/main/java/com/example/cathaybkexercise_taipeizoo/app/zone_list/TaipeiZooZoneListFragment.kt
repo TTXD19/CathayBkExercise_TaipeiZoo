@@ -26,9 +26,7 @@ class TaipeiZooZoneListFragment : BaseFragment(), TaipeiZooZoneListContracts.Vie
     }
 
     private val taipeiZooZoneListAdapter: TaipeiZooZoneListAdapter by lazy {
-        TaipeiZooZoneListAdapter(
-            onItemClickCallBack
-        )
+        TaipeiZooZoneListAdapter(onItemClickCallBack)
     }
 
     companion object {
