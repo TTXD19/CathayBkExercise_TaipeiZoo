@@ -16,10 +16,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/default_plant"
+            android:layout_marginStart="5dp"
             android:background="@color/zoo_green"
             android:transitionName="image_view_test"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_plant_name"
@@ -29,6 +31,7 @@
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/noto_sans"
             android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"

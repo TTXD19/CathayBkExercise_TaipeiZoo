@@ -165,6 +165,6 @@
             app:layout_constraintTop_toBottomOf="@id/tv_zone_plant_title"
             app:spanCount="3"
             tools:listitem="@layout/vh_plant_detail"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
